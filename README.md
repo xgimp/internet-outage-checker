@@ -10,7 +10,7 @@ Simple script for monitoring internet outages. It creates CSV file that contain 
 Clone this repository and run 
 
 ```
-python app.py
+python check.py
 ```
 
 ## Usage
