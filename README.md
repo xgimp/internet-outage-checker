@@ -1,6 +1,6 @@
 # About 
 
-Simple script for monitoring internet outages. It creates CSV file that contain outage duration.
+Simple script for monitoring internet outages. It creates CSV file that contain list of outages duration.
 
 ## Requirements:
 * Python 3.6 or newer
