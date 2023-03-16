@@ -14,18 +14,19 @@ class ReportFile:
         report_file = Path(self.REPORT_FILE_PATH)
         file_exists = report_file.exists()
 
-        if not file_exists:
-            Path(self.REPORT_FILE_PATH).touch(exist_ok=False)
-
-            with open(self.REPORT_FILE_PATH,
-                      "w",
-                      encoding="utf-8",
-                      newline='') as csvfile:
-                writer = csv.DictWriter(
-                    csvfile,
-                    fieldnames=self.CSV_COLUMNS,
-                    quoting=csv.QUOTE_ALL)
-                writer.writeheader()
+        if file_exists:
+            return None
+    
+        Path(self.REPORT_FILE_PATH).touch(exist_ok=False)
+        with open(self.REPORT_FILE_PATH,
+                    "w",
+                    encoding="utf-8",
+                    newline='') as csvfile:
+            writer = csv.DictWriter(
+                csvfile,
+                fieldnames=self.CSV_COLUMNS,
+                quoting=csv.QUOTE_ALL)
+            writer.writeheader()
         print(f'Report file: {self.REPORT_FILE_PATH}')
 
     def write(self, _date, _time, event) -> None:
@@ -36,8 +37,7 @@ class ReportFile:
             writer = csv.DictWriter(
                 csvfile,
                 fieldnames=self.CSV_COLUMNS,
-                quoting=csv.QUOTE_ALL,
-            )
+                quoting=csv.QUOTE_ALL)
             writer.writerow({
                 self.CSV_COLUMNS[0]: _date,
                 self.CSV_COLUMNS[1]: _time,
