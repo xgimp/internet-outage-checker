@@ -28,7 +28,7 @@ class ReportFile:
             writer.writeheader()
 
     def write(self, _date, _time, event) -> None:
-        csv_header = {
+        CSV_HEADER = {
             self.CSV_COLUMNS[0]: _date,
             self.CSV_COLUMNS[1]: _time,
             self.CSV_COLUMNS[2]: event
@@ -41,4 +41,4 @@ class ReportFile:
                 csvfile,
                 fieldnames=self.CSV_COLUMNS,
                 quoting=csv.QUOTE_ALL)
-            writer.writerow(csv_header)
+            writer.writerow(CSV_HEADER)
