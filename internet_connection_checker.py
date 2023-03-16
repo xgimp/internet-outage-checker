@@ -41,7 +41,7 @@ class InternetConnectionStatusChecker:
         else:
             # there was no outage
             if not self.was_outage:
-                return self.was_outage
+                return not self.was_outage
             
             # end current outage
             if self.was_outage:
