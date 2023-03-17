@@ -31,12 +31,13 @@ if __name__ == "__main__":
     print(f'checking interval: every {args.interval} second(s)')
 
     report = ReportFile(path=args.report_path)
-    internet = InternetConnectionStatusChecker(report_file=report)
+    internet = InternetConnectionStatusChecker()
 
 
     while True:
         try:
-            internet.check_connection()
+            outage = internet.check_connection()
+            report.log_outage(outage)
             time.sleep(args.interval)
         except KeyboardInterrupt:
             print("'K, bye!")
