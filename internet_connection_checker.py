@@ -1,4 +1,3 @@
-from datetime import datetime
 import urllib.error, urllib.request
 from outage import Outage, OutageState
 
