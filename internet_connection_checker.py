@@ -22,18 +22,12 @@ class InternetConnectionStatusChecker:
 
     def check_connection(self) -> Outage:
         if self.is_outage():
-            # ongoing outage
             if self.ongoing_outage:
                 return Outage(OutageState.ONGOING)
             
-            # outage but not outgoing
             print('New outage!')
             self.ongoing_outage = True
             return Outage(OutageState.NEW)
-
-        # there was no outage
-        if not self.ongoing_outage:
-            return Outage(OutageState.NONE)
         
         # no outage but ongoing is True
         # so end current outage
@@ -41,3 +35,6 @@ class InternetConnectionStatusChecker:
             print('Outage ended')
             self.ongoing_outage = False
             return Outage(OutageState.ENDED)
+
+        # no outage
+        return Outage(OutageState.NONE)
