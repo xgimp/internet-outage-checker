@@ -8,7 +8,7 @@ class InternetConnectionStatusChecker:
         self.ongoing_outage = False
 
     @staticmethod
-    def is_outage() -> bool:
+    def _is_outage() -> bool:
         try:
             r = urllib.request.Request("https://www.google.com", method="HEAD")
             urllib.request.urlopen(r, timeout=2)
@@ -20,8 +20,8 @@ class InternetConnectionStatusChecker:
         else:
             return False
 
-    def check_connection(self) -> Outage:
-        if self.is_outage():
+    def check_outage(self) -> Outage:
+        if self._is_outage():
             if self.ongoing_outage:
                 return Outage(OutageState.ONGOING)
             

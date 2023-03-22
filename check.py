@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
     while True:
         try:
-            outage = internet.check_connection()
+            outage = internet.check_outage()
             report.log_outage(outage)
             time.sleep(args.interval)
         except KeyboardInterrupt:
