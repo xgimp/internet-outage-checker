@@ -15,7 +15,9 @@ class InternetConnectionStatusChecker:
         except (
             urllib.error.URLError,
             urllib.error.HTTPError,
-            urllib.error.ContentTooShortError):
+            urllib.error.ContentTooShortError,
+            TimeoutError
+        ):
             return True
         else:
             return False
@@ -24,11 +26,11 @@ class InternetConnectionStatusChecker:
         if self._is_outage():
             if self.ongoing_outage:
                 return Outage(OutageState.ONGOING)
-            
+
             print('New outage!')
             self.ongoing_outage = True
             return Outage(OutageState.NEW)
-        
+
         # no outage but ongoing is True
         # so end current outage
         if self.ongoing_outage:
